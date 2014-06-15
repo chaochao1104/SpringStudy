@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="emptyBean" class="com.chaos.edu.spring.appcontxt.Bean" primary="true">
+		<!-- additional collaborators and configuration for this bean go here -->
+	</bean>
+
+	<bean id="aBean" class="com.chaos.edu.spring.appcontxt.Bean">
+		<constructor-arg type="java.lang.String" value="A" />
+	</bean>
+
+	<bean id="bBean" class="com.chaos.edu.spring.appcontxt.Bean">
+		<constructor-arg type="java.lang.String" value="B" />
+		<constructor-arg type="com.chaos.edu.spring.appcontxt.Bean"
+			ref="aBean" />
+	</bean>
+
+	<bean id="cBean" class="com.chaos.edu.spring.appcontxt.Bean"
+		factory-method="newInstance" />
+
+	<bean id="dBean" class="com.chaos.edu.spring.appcontxt.Bean">
+		<property name="name" value="D" />
+	</bean>
+
+	<bean id="beanFactory" class="com.chaos.edu.spring.appcontxt.BeanFactory" />
+
+	<bean id="singletonBean" factory-bean="beanFactory"
+		factory-method="singleton" />
+		
+    <bean id="lazyBean" class="com.chaos.edu.spring.appcontxt.Bean" lazy-init="true">
+    	<constructor-arg type="java.lang.String" value="Lazy Bean" />
+    </bean>
+
+</beans>
