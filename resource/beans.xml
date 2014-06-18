@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:annotation-config/>
 
 	<bean id="emptyBean" class="com.chaos.edu.spring.appcontxt.Bean" primary="true">
 		<!-- additional collaborators and configuration for this bean go here -->
@@ -19,6 +23,7 @@
 			ref="aBean" />
 	</bean>
 
+    <!-- static factory method -->
 	<bean id="cBean" class="com.chaos.edu.spring.appcontxt.Bean"
 		factory-method="newInstance" />
 
@@ -28,11 +33,16 @@
 
 	<bean id="beanFactory" class="com.chaos.edu.spring.appcontxt.BeanFactory" />
 
+    <!-- non-static factory method -->
 	<bean id="singletonBean" factory-bean="beanFactory"
 		factory-method="singleton" />
 		
     <bean id="lazyBean" class="com.chaos.edu.spring.appcontxt.Bean" lazy-init="true">
     	<constructor-arg type="java.lang.String" value="Lazy Bean" />
+    </bean>
+    
+    <bean id="item" class="com.chaos.edu.spring.appcontxt.Item" autowire="byType">
+    	<constructor-arg type="java.lang.String" value="LALA" />
     </bean>
 
 </beans>

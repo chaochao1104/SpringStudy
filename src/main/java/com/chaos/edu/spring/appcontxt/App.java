@@ -1,22 +1,11 @@
 package com.chaos.edu.spring.appcontxt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 	
 
-	private Bean autowiredBean;
-	
-	public Bean getAutowiredBean() {
-		return autowiredBean;
-	}
-	
-	@Autowired
-	public void setAutowiredBean(Bean autowiredBean) {
-		this.autowiredBean = autowiredBean;
-	}
 
 	public static void main(String[] args) {
 		
@@ -46,8 +35,7 @@ public class App {
 		
 		Bean lazyBean = context.getBean("lazyBean", Bean.class);
 		System.out.println("dBean's name is " + lazyBean.getName());
+		System.out.println("dBean's item's name is " + lazyBean.getItem().getName());
 		
-		App a = new App();
-		System.out.println("autowiredBean's name is " + a.autowiredBean.getName());
 	}
 }

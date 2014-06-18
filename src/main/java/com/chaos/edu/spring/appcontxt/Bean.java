@@ -1,7 +1,11 @@
 package com.chaos.edu.spring.appcontxt;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Bean {
 
+	private Item item;
+	
 	public static Bean newInstance() {
 		return new Bean("A new bean created by static newInstance()");
 	}
@@ -37,5 +41,12 @@ public class Bean {
 		this.nextBean = nextBean;
 	}
 	
-	
+	public Item getItem() {
+		return item;
+	}
+
+	@Autowired
+	public void setItem(Item item) {
+		this.item = item;
+	}
 }
